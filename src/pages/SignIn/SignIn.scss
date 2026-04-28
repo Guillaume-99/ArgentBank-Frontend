@@ -1,0 +1,58 @@
+.sign-in-page {
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    flex: 1;
+}
+
+.bg-dark {
+    background-color: #12002b;
+    padding-top: 3rem;
+}
+
+.sign-in-content {
+    box-sizing: border-box;
+    background-color: white;
+    width: 300px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.sign-in-button {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    border-color: #00bc77;
+    background-color: #00bc77;
+    color: #fff;
+}
+
+.input-wrapper {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+    text-align: left;
+
+    & label {
+        font-weight: bold;
+    }
+
+    & input {
+        padding: 0.3rem;
+        font-size: 1.2rem;
+    }
+}
+
+.input-remember {
+    display: flex;
+
+    & label {
+        margin-left: 0.25rem;
+    }
+}
