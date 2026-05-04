@@ -1,7 +1,7 @@
-import "./Profile.scss";
+import "./User.scss";
 import Header from "../../components/Header/HeaderIndex.jsx";
 
-function Profile() {
+function User() {
     return (
         <div className="profile-page">
             <Header />
@@ -50,4 +50,4 @@ function Profile() {
     );
 }
 
-export default Profile;
+export default User;
