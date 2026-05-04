@@ -6,7 +6,7 @@ const Header = () => {
         <header>
             <nav className="header__nav">
                 <NavLink className="header__nav--logo" to="/">
-                    <img className="header__nav--logo-image" src="/images/argentBankLogo.png" alt="Argent Bank Logo" />
+                    <img className="header__nav--logo-image" src="/img/argentBankLogo.webp" alt="Argent Bank Logo" />
                     <h1 className="sr-only">Argent Bank</h1>
                 </NavLink>
 
