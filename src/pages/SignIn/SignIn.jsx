@@ -3,7 +3,7 @@ import "./SignIn.scss";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { login } from "../../Features/User/UserApi";
+import { getUser, login } from "../../Features/User/UserApi";
 import { loginSuccess } from "../../Features/User/UserSlice";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -20,11 +20,13 @@ function SignIn() {
         e.preventDefault();
 
         await login(username, password);
-
+        // Stockage du token et du profil dans localStorage
         try {
             const token = await login(username, password);
             localStorage.setItem("token", token);
-            dispatch(loginSuccess({ token }));
+            const profile = await getUser(token);
+            localStorage.setItem("profile", JSON.stringify(profile));
+            dispatch(loginSuccess({ token, profile }));
         } catch (error) {
             console.error("Erreur login:", error);
         }
