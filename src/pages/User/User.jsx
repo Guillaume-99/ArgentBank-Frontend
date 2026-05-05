@@ -2,6 +2,7 @@ import "./User.scss";
 import Header from "../../components/Header/HeaderIndex.jsx";
 
 function User() {
+    const profile = localStorage.getItem("profile") ? JSON.parse(localStorage.getItem("profile")) : null;
     return (
         <div className="profile-page">
             <Header />
@@ -10,7 +11,7 @@ function User() {
                     <h1>
                         Welcome back
                         <br />
-                        Tony Jarvis!
+                        {profile ? `${profile.firstName} ${profile.lastName}` : "User"}!
                     </h1>
                     <button className="edit-button">Edit Name</button>
                 </div>
