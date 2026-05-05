@@ -1,19 +1,16 @@
 import "./User.scss";
 import Header from "../../components/Header/HeaderIndex.jsx";
+import UserEdit from "../../components/UserEdit/UserEdit.jsx";
+import { useSelector } from "react-redux";
 
 function User() {
-    const profile = localStorage.getItem("profile") ? JSON.parse(localStorage.getItem("profile")) : null;
+    const profile = useSelector((state) => state.user.profile);
     return (
         <div className="profile-page">
             <Header />
             <main className="main bg-dark">
                 <div className="header">
-                    <h1>
-                        Welcome back
-                        <br />
-                        {profile ? `${profile.firstName} ${profile.lastName}` : "User"}!
-                    </h1>
-                    <button className="edit-button">Edit Name</button>
+                    <UserEdit />
                 </div>
                 <h2 className="sr-only">Accounts</h2>
                 <section className="account">

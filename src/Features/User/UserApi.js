@@ -38,6 +38,27 @@ async function getUser(token) {
     }
 }
 
+// appel API pour update user profile
+async function updateUser(token, firstName, lastName) {
+    try {
+        const response = await fetch("http://localhost:3001/api/v1/user/profile", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ firstName, lastName }),
+        });
+        const data = await response.json();
+        if (!response.ok) {
+            throw new Error(data.message || "Impossible de mettre à jour le profil");
+        }
+        return data.body;
+    } catch (error) {
+        throw error;
+    }
+}
+
 // appel API pour info utilisateur signup
 async function signup(FirstName, LastName, email, password) {
     try {
@@ -58,4 +79,4 @@ async function signup(FirstName, LastName, email, password) {
     }
 }
 
-export { login, getUser, signup };
+export { login, getUser, updateUser, signup };

@@ -2,9 +2,10 @@ import "./HeaderIndex.scss";
 import { NavLink, useNavigate, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../Features/User/UserSlice";
+import { use } from "react";
 const Header = () => {
     const dispatch = useDispatch();
-    const profile = localStorage.getItem("profile") ? JSON.parse(localStorage.getItem("profile")) : null;
+    const profile = useSelector((state) => state.user.profile);
     const navigate = useNavigate();
     const token = localStorage.getItem("token");
 
