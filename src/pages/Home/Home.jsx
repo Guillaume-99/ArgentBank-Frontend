@@ -1,7 +1,11 @@
 import Header from "../../components/Header/HeaderIndex.jsx";
+import { useEffect } from "react";
 import "./Home.scss";
 
 function Home() {
+    useEffect(() => {
+        document.title = "Argent Bank | Home";
+    }, []);
     return (
         <>
             <Header />

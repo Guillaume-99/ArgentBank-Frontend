@@ -1,10 +1,13 @@
 import "./Profil.scss";
 import Header from "../../components/Header/HeaderIndex.jsx";
 import UserEdit from "../../components/UserEdit/UserEdit.jsx";
-import { useSelector } from "react-redux";
+import { useSelector, useEffect } from "react-redux";
 
 function User() {
     const profile = useSelector((state) => state.user.profile);
+    useEffect(() => {
+        document.title = "Argent Bank | Profile";
+    }, []);
     return (
         <div className="profile-page">
             <Header />

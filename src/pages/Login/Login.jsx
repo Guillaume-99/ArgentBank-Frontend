@@ -47,6 +47,7 @@ function SignIn() {
     };
 
     useEffect(() => {
+        document.title = "Argent Bank | Login";
         if (token) {
             navigate("/profil");
         }
