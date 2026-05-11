@@ -25,18 +25,18 @@ const Header = () => {
                 <div>
                     {token ? (
                         <>
-                            <NavLink className="header__nav--item" to="/user">
+                            <NavLink className="header__nav--item" to="/profil">
                                 <i className="fa fa-user-circle"></i>
                                 {profile?.firstName}
                             </NavLink>
 
-                            <Link className="header__nav--item" onClick={handleLogout} to="/signin">
+                            <Link className="header__nav--item" onClick={handleLogout} to="/login">
                                 <i className="fa fa-sign-out"></i>
                                 Sign Out
                             </Link>
                         </>
                     ) : (
-                        <NavLink className="header__nav--item" to="/signin">
+                        <NavLink className="header__nav--item" to="/login">
                             <i className="fa fa-user-circle"></i>
                             Sign In
                         </NavLink>

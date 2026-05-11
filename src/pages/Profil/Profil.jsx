@@ -1,4 +1,4 @@
-import "./User.scss";
+import "./Profil.scss";
 import Header from "../../components/Header/HeaderIndex.jsx";
 import UserEdit from "../../components/UserEdit/UserEdit.jsx";
 import { useSelector } from "react-redux";

@@ -1,13 +1,20 @@
 // User Slice for managing user state
 import { createSlice } from "@reduxjs/toolkit";
 
+const storedProfile = localStorage.getItem("profile");
+let profile = null;
+
+if (storedProfile && storedProfile !== "undefined") {
+    profile = JSON.parse(storedProfile);
+}
+
 const initialState = {
     isAuthenticated: false,
     token: localStorage.getItem("token") || null,
-    profile: JSON.parse(localStorage.getItem("profile")) || null,
+    profile: profile,
 };
 
-// Changement d'état lors de la connexion et de la déconnexion de l'utilisateur +recupération token
+// Changement d'état lors de la connexion et de la déconnexion de l'utilisateur +recupération token
 
 const userSlice = createSlice({
     name: "user",

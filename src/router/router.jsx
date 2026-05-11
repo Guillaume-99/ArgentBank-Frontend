@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "../App.jsx";
 import Home from "../pages/Home/Home.jsx";
-import SignIn from "../pages/SignIn/SignIn.jsx";
-import User from "../pages/User/User.jsx";
+import Login from "../pages/Login/Login.jsx";
+import Profil from "../pages/Profil/Profil.jsx";
 import ProtectedRoute from "./securyPass.jsx";
 
 const router = createBrowserRouter([
@@ -15,15 +15,15 @@ const router = createBrowserRouter([
                 element: <Home />,
             },
             {
-                path: "signin",
-                element: <SignIn />,
+                path: "login",
+                element: <Login />,
             },
             {
                 element: <ProtectedRoute />,
                 children: [
                     {
-                        path: "user",
-                        element: <User />,
+                        path: "profil",
+                        element: <Profil />,
                     },
                 ],
             },

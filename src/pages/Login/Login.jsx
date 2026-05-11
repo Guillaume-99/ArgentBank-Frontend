@@ -1,5 +1,5 @@
 import Header from "../../components/Header/HeaderIndex";
-import "./SignIn.scss";
+import "./Login.scss";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -19,22 +19,24 @@ function SignIn() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        await login(username, password);
-        // Stockage du token et du profil dans localStorage
+        const errorMessageElement = document.querySelector(".error-message");
+
         try {
             const token = await login(username, password);
             localStorage.setItem("token", token);
+
             const profile = await getUser(token);
             localStorage.setItem("profile", JSON.stringify(profile));
+
             dispatch(loginSuccess({ token, profile }));
         } catch (error) {
-            console.error("Erreur login:", error);
+            errorMessageElement.style.display = "block";
         }
     };
 
     useEffect(() => {
         if (token) {
-            navigate("/user");
+            navigate("/profil");
         }
     }, [token, navigate]);
 
@@ -48,11 +50,14 @@ function SignIn() {
                     <form onSubmit={handleSubmit}>
                         <div className="input-wrapper">
                             <label htmlFor="email">Email</label>
-                            <input type="email" id="email" value={username} onChange={(e) => setUsername(e.target.value)} />
+                            <input type="email" id="email" value={username} onChange={(e) => setUsername(e.target.value)} required />
                         </div>
                         <div className="input-wrapper">
                             <label htmlFor="password">Password</label>
-                            <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                            <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+                        </div>
+                        <div>
+                            <p className="error-message">Login ou mot de passe incorrect</p>
                         </div>
                         <div className="input-remember">
                             <input type="checkbox" id="remember-me" />
