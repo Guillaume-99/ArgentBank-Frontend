@@ -1,7 +1,8 @@
 import "./Profil.scss";
 import Header from "../../components/Header/HeaderIndex.jsx";
 import UserEdit from "../../components/UserEdit/UserEdit.jsx";
-import { useSelector, useEffect } from "react-redux";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 function User() {
     const profile = useSelector((state) => state.user.profile);
