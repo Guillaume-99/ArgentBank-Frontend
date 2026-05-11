@@ -1,7 +1,7 @@
-function Features({ sr, items }) {
+function Features({ items }) {
     return (
         <div className="features">
-            <h2 className="sr-only">{sr}</h2>
+            <h2 className="sr-only">Features</h2>
             {items.map((item, index) => (
                 <div key={index} className="feature__item">
                     <img src={`../../img/icon-${item.image}.webp`} alt={item.alt} className="feature__icon" />

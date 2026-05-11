@@ -1,6 +1,7 @@
 import "./Profil.scss";
 import Header from "../../components/Header/HeaderIndex.jsx";
 import UserEdit from "../../components/UserEdit/UserEdit.jsx";
+import Account from "../../components/Account/Account.jsx";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 
@@ -16,37 +17,25 @@ function User() {
                 <div className="header">
                     <UserEdit />
                 </div>
-                <h2 className="sr-only">Accounts</h2>
-                <section className="account">
-                    <div className="account__content--wrapper">
-                        <h3 className="account__title">Argent Bank Checking (x8349)</h3>
-                        <p className="account__amount">$2,082.79</p>
-                        <p className="account__amount--description">Available Balance</p>
-                    </div>
-                    <div className="account__content--wrapper cta">
-                        <button className="transaction-button">View transactions</button>
-                    </div>
-                </section>
-                <section className="account">
-                    <div className="account__content--wrapper">
-                        <h3 className="account__title">Argent Bank Savings (x6712)</h3>
-                        <p className="account__amount">$10,928.42</p>
-                        <p className="account__amount--description">Available Balance</p>
-                    </div>
-                    <div className="account__content--wrapper cta">
-                        <button className="transaction-button">View transactions</button>
-                    </div>
-                </section>
-                <section className="account">
-                    <div className="account__content--wrapper">
-                        <h3 className="account__title">Argent Bank Credit Card (x8349)</h3>
-                        <p className="account__amount">$184.30</p>
-                        <p className="account__amount--description">Current Balance</p>
-                    </div>
-                    <div className="account__content--wrapper cta">
-                        <button className="transaction-button">View transactions</button>
-                    </div>
-                </section>
+                <Account
+                    accounts={[
+                        {
+                            title: "Argent Bank Checking (x8349)",
+                            amount: "$2,082.79",
+                            description: "Available Balance",
+                        },
+                        {
+                            title: "Argent Bank Savings (x6712)",
+                            amount: "$10,928.42",
+                            description: "Available Balance",
+                        },
+                        {
+                            title: "Argent Bank Credit Card (x8349)",
+                            amount: "$184.30",
+                            description: "Current Balance",
+                        },
+                    ]}
+                />
             </main>
         </div>
     );

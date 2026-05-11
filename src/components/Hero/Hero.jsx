@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 
-function Hero({ title, subtitles, text }) {
+function Hero({ subtitles, text }) {
     return (
         <div className="hero">
             <div className="hero__content">
-                <h2 className="sr-only">{title}</h2>
+                <h2 className="sr-only">Promoted Content</h2>
                 {subtitles.map((subtitle, index) => (
                     <p key={index} className="hero__subtitle">
                         {subtitle}

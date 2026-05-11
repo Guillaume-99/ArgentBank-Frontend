@@ -12,9 +12,8 @@ function Home() {
         <>
             <Header />
             <main>
-                <Hero title="Promoted Content" subtitles={["No fees.", "No minimum deposit.", "High interest rates."]} text="Open a savings account with Argent Bank today!" />
+                <Hero subtitles={["No fees.", "No minimum deposit.", "High interest rates."]} text="Open a savings account with Argent Bank today!" />
                 <Features
-                    sr="Features"
                     items={[
                         {
                             title: "You are our #1 priority",
