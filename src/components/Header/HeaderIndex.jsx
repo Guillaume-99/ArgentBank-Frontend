@@ -7,11 +7,14 @@ const Header = () => {
     const dispatch = useDispatch();
     const profile = useSelector((state) => state.user.profile);
     const navigate = useNavigate();
-    const token = localStorage.getItem("token");
+    const rememberMeChecked = localStorage.getItem("remember-me") === "true";
+    const storage = rememberMeChecked ? localStorage : sessionStorage;
+    const storedToken = storage.getItem("token");
+    const token = storedToken || null;
 
     const handleLogout = () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("profile");
+        storage.removeItem("token");
+        storage.removeItem("profile");
         dispatch(logout());
     };
     return (

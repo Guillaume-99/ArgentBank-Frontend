@@ -20,13 +20,25 @@ function SignIn() {
         e.preventDefault();
 
         const errorMessageElement = document.querySelector(".error-message");
+        const rememberMeChecked = document.getElementById("remember-me").checked;
 
         try {
             const token = await login(username, password);
-            localStorage.setItem("token", token);
-
             const profile = await getUser(token);
-            localStorage.setItem("profile", JSON.stringify(profile));
+
+            if (rememberMeChecked) {
+                localStorage.setItem("remember-me", "true");
+                localStorage.setItem("token", token);
+                localStorage.setItem("profile", JSON.stringify(profile));
+                sessionStorage.removeItem("token");
+                sessionStorage.removeItem("profile");
+            } else {
+                localStorage.setItem("remember-me", "false");
+                sessionStorage.setItem("token", token);
+                sessionStorage.setItem("profile", JSON.stringify(profile));
+                localStorage.removeItem("token");
+                localStorage.removeItem("profile");
+            }
 
             dispatch(loginSuccess({ token, profile }));
         } catch (error) {
