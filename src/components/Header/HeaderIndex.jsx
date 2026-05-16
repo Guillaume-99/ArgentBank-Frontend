@@ -30,7 +30,7 @@ const Header = () => {
                         <>
                             <NavLink className="header__nav--item" to="/profil">
                                 <i className="fa fa-user-circle"></i>
-                                {profile?.userName || "Profile"}
+                                {profile?.userName || profile?.firstName || "Profile"}
                             </NavLink>
 
                             <Link className="header__nav--item" onClick={handleLogout} to="/login">
