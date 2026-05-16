@@ -6,25 +6,21 @@ import "./UserEdit.scss";
 
 function UserEdit() {
     const [isEditing, setIsEditing] = useState(false);
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
+    const [userName, setUserName] = useState("");
     const dispatch = useDispatch();
     const token = useSelector((state) => state.user.token);
     const profile = useSelector((state) => state.user.profile);
 
     useEffect(() => {
         if (profile) {
-            setFirstName(profile.firstName || "");
-            setLastName(profile.lastName || "");
+            setUserName(profile.userName || "");
         }
     }, [profile]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            console.log("avant envoie:", { firstName, lastName });
-            const updatedUser = await updateUser(token, firstName, lastName);
-            console.log("apres envoie:", updatedUser);
+            const updatedUser = await updateUser(token, userName);
             dispatch(updateUserProfile(updatedUser));
             setIsEditing(false);
         } catch (error) {
@@ -48,12 +44,16 @@ function UserEdit() {
                     <h2>Edit User Profile</h2>
                     <form onSubmit={handleSubmit}>
                         <span>
+                            <label htmlFor="userName">Username:</label>
+                            <input type="text" id="userName" value={userName} onChange={(e) => setUserName(e.target.value)} />
+                        </span>
+                        <span>
                             <label htmlFor="firstName">First Name:</label>
-                            <input type="text" id="firstName" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                            <input type="text" id="firstName" value={profile?.firstName} disabled />
                         </span>
                         <span>
                             <label htmlFor="lastName">Last Name:</label>
-                            <input type="text" id="lastName" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+                            <input type="text" id="lastName" value={profile?.lastName} disabled />
                         </span>
                         <span>
                             <button className="editForm__button" type="submit">

@@ -22,7 +22,7 @@ async function login(username, password) {
 async function getUser(token) {
     try {
         const response = await fetch("http://localhost:3001/api/v1/user/profile", {
-            method: "POST",
+            method: "GET",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
@@ -39,7 +39,7 @@ async function getUser(token) {
 }
 
 // appel API pour update user profile
-async function updateUser(token, firstName, lastName) {
+async function updateUser(token, userName) {
     try {
         const response = await fetch("http://localhost:3001/api/v1/user/profile", {
             method: "PUT",
@@ -47,7 +47,7 @@ async function updateUser(token, firstName, lastName) {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
             },
-            body: JSON.stringify({ firstName, lastName }),
+            body: JSON.stringify({ userName }),
         });
         const data = await response.json();
         if (!response.ok) {
@@ -60,14 +60,14 @@ async function updateUser(token, firstName, lastName) {
 }
 
 // appel API pour info utilisateur signup
-async function signup(FirstName, LastName, email, password) {
+async function signup(firstName, lastName, userName, email, password) {
     try {
         const response = await fetch("http://localhost:3001/api/v1/user/signup", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ FirstName, LastName, email, password }),
+            body: JSON.stringify({ firstName, lastName, userName, email, password }),
         });
         const data = await response.json();
         if (!response.ok) {

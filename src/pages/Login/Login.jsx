@@ -15,18 +15,18 @@ function SignIn() {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [rememberMe, setRememberMe] = useState(false);
+    const [errorMessage, setErrorMessage] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const errorMessageElement = document.querySelector(".error-message");
-        const rememberMeChecked = document.getElementById("remember-me").checked;
+        setErrorMessage(false);
 
         try {
             const token = await login(username, password);
             const profile = await getUser(token);
 
-            if (rememberMeChecked) {
+            if (rememberMe) {
                 localStorage.setItem("remember-me", "true");
                 localStorage.setItem("token", token);
                 localStorage.setItem("profile", JSON.stringify(profile));
@@ -42,7 +42,7 @@ function SignIn() {
 
             dispatch(loginSuccess({ token, profile }));
         } catch (error) {
-            errorMessageElement.style.display = "block";
+            setErrorMessage(true);
         }
     };
 
@@ -69,11 +69,15 @@ function SignIn() {
                             <label htmlFor="password">Password</label>
                             <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
                         </div>
-                        <div>
-                            <p className="error-message">Login ou mot de passe incorrect</p>
-                        </div>
+
+                        {errorMessage && (
+                            <div>
+                                <p className="error-message">Login ou mot de passe incorrect</p>
+                            </div>
+                        )}
+
                         <div className="input-remember">
-                            <input type="checkbox" id="remember-me" />
+                            <input type="checkbox" id="remember-me" checked={rememberMe} onChange={(e) => setRememberMe(e.target.checked)} />
                             <label htmlFor="remember-me">Remember me</label>
                         </div>
 
